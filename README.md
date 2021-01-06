@@ -1,6 +1,21 @@
 # NCTU_CS_T0828_HW4-Image Super Resolution
 ## Introduction
+The proposed challenge is to train the model to reconstruct a high-resolution image from a low-resolution input, dataset with 291 training high-resolution images and 14 testing low-resolution images.
+## Methodology
+### Data pre-process
+In the beginning, I try to write a new dataloader to load my own training data. However, I found this project has very few comments and documents about this project and it's a little cost time to understand how this project organized. Thankfully, the project is default training on DIV2K dataset, and thus, I turn to implement a simple converter to convert my dataset to DIV2K format.
 
+After using get_lrimg.py to get myself dataloader, the structure like below:
+```
+datasets
+├── DIV2K
+│   ├── DIV2K_train_HR
+│   ├── DIV2K_train_LR_bicubic
+│   │   ├── X2
+│   │   └── X3
+│   │   └── ...
+└── testing_lr_images
+```
 **Differences between Torch version**
 * Codes are much more compact. (Removed all unnecessary parts.)
 * Models are smaller. (About half.)
@@ -86,71 +101,7 @@ cd src       # You are now in */EDSR-PyTorch/src
 sh demo.sh
 ```
 
-**Update log**
-* Jan 04, 2018
-  * Many parts are re-written. You cannot use previous scripts and models directly.
-  * Pre-trained MDSR is temporarily disabled.
-  * Training details are included.
 
-* Jan 09, 2018
-  * Missing files are included (```src/data/MyImage.py```).
-  * Some links are fixed.
-
-* Jan 16, 2018
-  * Memory efficient forward function is implemented.
-  * Add --chop_forward argument to your script to enable it.
-  * Basically, this function first split a large image to small patches. Those images are merged after super-resolution. I checked this function with 12GB memory, 4000 x 2000 input image in scale 4. (Therefore, the output will be 16000 x 8000.)
-
-* Feb 21, 2018
-  * Fixed the problem when loading pre-trained multi-GPU model.
-  * Added pre-trained scale 2 baseline model.
-  * This code now only saves the best-performing model by default. For MDSR, 'the best' can be ambiguous. Use --save_models argument to keep all the intermediate models.
-  * PyTorch 0.3.1 changed their implementation of DataLoader function. Therefore, I also changed my implementation of MSDataLoader. You can find it on feature/dataloader branch.
-
-* Feb 23, 2018
-  * Now PyTorch 0.3.1 is a default. Use legacy/0.3.0 branch if you use the old version.
-  * With a new ``src/data/DIV2K.py`` code, one can easily create new data class for super-resolution.
-  * New binary data pack. (Please remove the ``DIV2K_decoded`` folder from your dataset if you have.)
-  * With ``--ext bin``, this code will automatically generate and saves the binary data pack that corresponds to previous ``DIV2K_decoded``. (This requires huge RAM (~45GB, Swap can be used.), so please be careful.)
-  * If you cannot make the binary pack, use the default setting (``--ext img``).
-
-  * Fixed a bug that PSNR in the log and PSNR calculated from the saved images does not match.
-  * Now saved images have better quality! (PSNR is ~0.1dB higher than the original code.)
-  * Added performance comparison between Torch7 model and PyTorch models.
-
-* Mar 5, 2018
-  * All baseline models are uploaded.
-  * Now supports half-precision at test time. Use ``--precision half``  to enable it. This does not degrade the output images.
-
-* Mar 11, 2018
-  * Fixed some typos in the code and script.
-  * Now --ext img is default setting. Although we recommend you to use --ext bin when training, please use --ext img when you use --test_only.
-  * Skip_batch operation is implemented. Use --skip_threshold argument to skip the batch that you want to ignore. Although this function is not exactly the same with that of Torch7 version, it will work as you expected.
-
-* Mar 20, 2018
-  * Use ``--ext sep-reset`` to pre-decode large png files. Those decoded files will be saved to the same directory with DIV2K png files. After the first run, you can use ``--ext sep`` to save time.
-  * Now supports various benchmark datasets. For example, try ``--data_test Set5`` to test your model on the Set5 images.
-  * Changed the behavior of skip_batch.
-
-* Mar 29, 2018
-  * We now provide all models from our paper.
-  * We also provide ``MDSR_baseline_jpeg`` model that suppresses JPEG artifacts in the original low-resolution image. Please use it if you have any trouble.
-  * ``MyImage`` dataset is changed to ``Demo`` dataset. Also, it works more efficient than before.
-  * Some codes and script are re-written.
-
-* Apr 9, 2018
-  * VGG and Adversarial loss is implemented based on [SRGAN](http://openaccess.thecvf.com/content_cvpr_2017/papers/Ledig_Photo-Realistic_Single_Image_CVPR_2017_paper.pdf). [WGAN](https://arxiv.org/abs/1701.07875) and [gradient penalty](https://arxiv.org/abs/1704.00028) are also implemented, but they are not tested yet.
-  * Many codes are refactored. If there exists a bug, please report it.
-  * [D-DBPN](https://arxiv.org/abs/1803.02735) is implemented. The default setting is D-DBPN-L.
-
-* Apr 26, 2018
-  * Compatible with PyTorch 0.4.0
-  * Please use the legacy/0.3.1 branch if you are using the old version of PyTorch.
-  * Minor bug fixes
-
-* July 22, 2018
-  * Thanks for recent commits that contains RDN and RCAN. Please see ``code/demo.sh`` to train/test those models.
-  * Now the dataloader is much stable than the previous version. Please erase ``DIV2K/bin`` folder that is created before this commit. Also, please avoid using ``--ext bin`` argument. Our code will automatically pre-decode png images before training. If you do not have enough spaces(~10GB) in your disk, we recommend ``--ext img``(But SLOW!).
 
 * Oct 18, 2018
   * with ``--pre_train download``, pretrained models will be automatically downloaded from the server.
