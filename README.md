@@ -4,8 +4,10 @@ The proposed challenge is to train the model to reconstruct a high-resolution im
 ## Methodology
 ### Data pre-process
 In the beginning, I try to write a new dataloader to load my own training data. However, I found this project has very few comments and documents about this project and it's a little cost time to understand how this project organized. Thankfully, the project is default training on DIV2K dataset, and thus, I turn to implement a simple converter to convert my dataset to DIV2K format.
-
-After using get_lrimg.py to get myself dataloader, the structure like below:
+```
+$ python3 get_lrimg.py
+```
+After using **get_lrimg.py** to get myself dataloader, the structure like below:
 ```
 datasets
 ├── DIV2K
