@@ -1,30 +1,5 @@
-**About PyTorch 1.2.0**
-  * Now the master branch supports PyTorch 1.2.0 by default.
-  * Due to the serious version problem (especially torch.utils.data.dataloader), MDSR functions are temporarily disabled. If you have to train/evaluate the MDSR model, please use legacy branches.
-
-# EDSR-PyTorch
-
-**About PyTorch 1.1.0**
-  * There have been minor changes with the 1.1.0 update. Now we support PyTorch 1.1.0 by default, and please use the legacy branch if you prefer older version.
-
-![](/figs/main.png)
-
-This repository is an official PyTorch implementation of the paper **"Enhanced Deep Residual Networks for Single Image Super-Resolution"** from **CVPRW 2017, 2nd NTIRE**.
-You can find the original code and more information from [here](https://github.com/LimBee/NTIRE2017).
-
-If you find our work useful in your research or publication, please cite our work:
-
-[1] Bee Lim, Sanghyun Son, Heewon Kim, Seungjun Nah, and Kyoung Mu Lee, **"Enhanced Deep Residual Networks for Single Image Super-Resolution,"** <i>2nd NTIRE: New Trends in Image Restoration and Enhancement workshop and challenge on image super-resolution in conjunction with **CVPR 2017**. </i> [[PDF](http://openaccess.thecvf.com/content_cvpr_2017_workshops/w12/papers/Lim_Enhanced_Deep_Residual_CVPR_2017_paper.pdf)] [[arXiv](https://arxiv.org/abs/1707.02921)] [[Slide](https://cv.snu.ac.kr/research/EDSR/Presentation_v3(release).pptx)]
-```
-@InProceedings{Lim_2017_CVPR_Workshops,
-  author = {Lim, Bee and Son, Sanghyun and Kim, Heewon and Nah, Seungjun and Lee, Kyoung Mu},
-  title = {Enhanced Deep Residual Networks for Single Image Super-Resolution},
-  booktitle = {The IEEE Conference on Computer Vision and Pattern Recognition (CVPR) Workshops},
-  month = {July},
-  year = {2017}
-}
-```
-We provide scripts for reproducing all the results from our paper. You can train your model from scratch, or use a pre-trained model to enlarge your images.
+# NCTU_CS_T0828_HW4-Image Super Resolution
+## Introduction
 
 **Differences between Torch version**
 * Codes are much more compact. (Removed all unnecessary parts.)
