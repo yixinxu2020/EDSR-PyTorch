@@ -18,13 +18,6 @@ datasets
 │   │   └── ...
 └── testing_lr_images
 ```
-**Differences between Torch version**
-* Codes are much more compact. (Removed all unnecessary parts.)
-* Models are smaller. (About half.)
-* Slightly better performances.
-* Training and evaluation requires less memory.
-* Python-based.
-
 ## Dependencies
 * Python 3.6
 * PyTorch >= 1.0.0
@@ -33,11 +26,11 @@ datasets
 * **imageio**
 * matplotlib
 * tqdm
-* cv2 >= 3.xx (Only if you want to use video input/output)
+* cv2 >= 3.xx 
 
-## Code
-Clone this repository into any place you want.
-```bash
+## Training
+### Clone github code
+Clone this repository first.
 git clone https://github.com/thstkdgus35/EDSR-PyTorch
 cd EDSR-PyTorch
 ```
@@ -102,13 +95,3 @@ You can train EDSR and MDSR by yourself. All scripts are provided in the ``src/d
 cd src       # You are now in */EDSR-PyTorch/src
 sh demo.sh
 ```
-
-
-
-* Oct 18, 2018
-  * with ``--pre_train download``, pretrained models will be automatically downloaded from the server.
-  * Supports video input/output (inference only). Try with ``--data_test video --dir_demo [video file directory]``.
-
-* About PyTorch 1.0.0
-  * We support PyTorch 1.0.0. If you prefer the previous versions of PyTorch, use legacy branches.
-  * ``--ext bin`` is not supported. Also, please erase your bin files with ``--ext sep-reset``. Once you successfully build those bin files, you can remove ``-reset`` from the argument.
