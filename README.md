@@ -42,6 +42,11 @@ $ python main.py --model EDSR --scale 2 --patch_size 72 --save edsr_baseline_x2 
 ```
 And than using the command below to get the final model. 
 ```
-$ python main.py --model EDSR --scale 3 --patch_size 72 --save edsr_baseline_x3 --pre_train /home/div/cv/hw4/EDSR-PyTorch/experiment/edsr_baseline_x2/model/model_best.pt --n_GPUs 2
+$ python main.py --model EDSR --scale 3 --patch_size 72 --save edsr_baseline_x3 --pre_train ../experiment/edsr_baseline_x2/model/model_best.pt --n_GPUs 2
 ```
 The best result in 271 epoch.
+## Testing
+Using the command below in the ./src folder to test testing_lr_images:
+```
+$ python main.py --data_test Demo --scale 3 --pre_train download --test_only --save_results
+```
