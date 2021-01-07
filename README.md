@@ -48,5 +48,5 @@ The best result in 271 epoch.
 ## Testing
 Using the command below in the ./src folder to test testing_lr_images:
 ```
-$ python main.py --data_test Demo --scale 3 --pre_train download --test_only --save_results
+$ python main.py --data_test Demo --scale 3 --pre_train ../experiment/edsr_baseline_x3/model/model_best.pt --test_only --save_results
 ```
